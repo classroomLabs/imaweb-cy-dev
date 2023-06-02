@@ -5,7 +5,7 @@ Sample code for Cypress development courses by [Alberto Basalo](https://albertob
 ## Clone Repository, install dependencies, and run the project
 
 ```bash
-git clone https://github.com/AlbertoBasalo/cy-dev
+git clone https://github.com/classroomLabs/imaweb-cy-dev
 cd cy-dev
 npm install
 # run cypress
