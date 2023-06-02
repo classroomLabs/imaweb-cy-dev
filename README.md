@@ -1,4 +1,4 @@
-# CyDev
+# CyDev IMAWEB
 
 Sample code for Cypress development courses by [Alberto Basalo](https://albertobasalo.dev)
 
@@ -6,7 +6,7 @@ Sample code for Cypress development courses by [Alberto Basalo](https://albertob
 
 ```bash
 git clone https://github.com/classroomLabs/imaweb-cy-dev
-cd cy-dev
+cd imaweb-cy-dev
 npm install
 # run cypress
 npm start
