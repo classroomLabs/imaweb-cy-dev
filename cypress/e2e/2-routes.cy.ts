@@ -30,9 +30,9 @@ describe("The Activity Bookings navigation links", () => {
       .should("eq", signUpUrl); // Assert
   });
   afterEach(() => {
-    cy.log("After Each");
+    cy.log("3️⃣ After Each");
   });
   after(() => {
-    cy.log("After ALL");
+    cy.log("4️⃣ After ALL");
   });
 });

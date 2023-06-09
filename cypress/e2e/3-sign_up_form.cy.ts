@@ -3,6 +3,7 @@
  *     should have a form with 4 inputs and a submit button disabled
  *   when the users fills the form correctly
  *     should allow to submit the form
+ *     should mark all inputs as valid
  *   when the user fills the form incorrectly
  *     should disabled the submit button if the form is invalid
  *     should mark the username as invalid if it is empty
