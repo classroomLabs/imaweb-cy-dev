@@ -17,6 +17,7 @@
  *     should not show an error dialog
  *     should not show a loading message
  */
+
 describe("The Home page", () => {
   const API_URL = `${Cypress.env("apiUrl")}/activities*`;
   beforeEach(() => {
@@ -24,17 +25,19 @@ describe("The Home page", () => {
   });
   context("when page is loading data", () => {
     beforeEach(() => {
-      cy.intercept("GET", API_URL, { delay: 1000 });
+      cy.intercept("GET", API_URL, {
+        delay: 1000,
+      });
     });
     it("should show a loading message", () => {
-      cy.get('aside[aria-busy="true"]').should("exist");
+      cy.get("aside[aria-busy='true']").should("exist");
     });
     it("should not show an error dialog", () => {
       cy.get("#error-dialog").should("not.exist");
     });
-    // it("should not show data", () => {
-    //   cy.get("article[name='Activity list']").should("not.exist");
-    // });
+    it("should not show data", () => {
+      cy.get("article[name='Activity list']").should("not.exist");
+    });
   });
   context("when there is an error", () => {
     beforeEach(() => {
@@ -71,7 +74,7 @@ describe("The Home page", () => {
       cy.get("aside[aria-busy='true']").should("not.exist");
     });
   });
-  context.only("when data arrives", () => {
+  context("when data arrives", () => {
     beforeEach(() => {
       cy.intercept("GET", API_URL, {
         fixture: "activities",
