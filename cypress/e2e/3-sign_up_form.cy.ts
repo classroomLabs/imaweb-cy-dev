@@ -17,7 +17,6 @@
  */
 describe("The sign-up form", () => {
   const signUpUrl = "http://localhost:4200/auth/sign-up";
-  let userNameInput;
   beforeEach(() => {
     cy.visit(signUpUrl);
   });
