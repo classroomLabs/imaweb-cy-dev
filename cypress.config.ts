@@ -5,6 +5,7 @@ export default defineConfig({
     baseUrl: "http://localhost:4200",
     env: {
       apiUrl: "http://localhost:3000",
+      listName: "list-content",
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here
