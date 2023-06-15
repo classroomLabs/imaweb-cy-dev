@@ -46,3 +46,7 @@ Thumbs.db
 yarn.lock
 
 private
+
+# Cypress
+/cypress/videos
+/cypress/screenshots
