@@ -18,11 +18,11 @@ describe("Given a user at registration flow", () => {
   });
   context("when sends valid new credentials", () => {
     beforeEach(() => {
-      cy.visit(PAGE_URL);
       cy.intercept("POST", API_URL, {
         statusCode: 201,
         fixture: "token",
       }).as("postRegister");
+      cy.visit(PAGE_URL);
       cy.get("#username").clear().type(NEW_USER.username);
       cy.get("[type='email']").clear().type(NEW_USER.email);
       cy.get("[type='password']").first().clear().type(NEW_USER.password);
