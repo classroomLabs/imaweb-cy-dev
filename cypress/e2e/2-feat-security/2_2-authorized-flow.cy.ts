@@ -6,7 +6,7 @@ import { TOKEN_KEY } from "../../support/commands";
  *   should display user menu
  *   should send the token to the server
  */
-describe.only("Given an already registered and logged user", () => {
+describe("Given an already registered and logged user", () => {
   const PAGE_URL = "/";
   const API_URL = `${Cypress.env("apiUrl")}/activities?state=published`;
   beforeEach(() => {
@@ -46,15 +46,19 @@ describe.only("Given an already registered and logged user", () => {
  *  when the user visits a page calling it
  *   should be redirected to the register page
  */
-describe("Given a secured endpoint returning 401", () => {
+describe.only("Given a secured endpoint returning 401", () => {
   const REGISTER_URL = "/auth/sign-up";
-  const PAGE_URL = "http://localhost:4200/activities/mines";
+  const PAGE_URL = "/activities/mines";
   const API_URL = `${Cypress.env("apiUrl")}/activities/?userId=`;
-  beforeEach(() => {});
+  beforeEach(() => {
+    cy.intercept("GET", API_URL, { statusCode: 401 }).as("getMyActivities");
+  });
   context("when the user visits a page calling it", () => {
     beforeEach(() => {
       cy.visit(PAGE_URL);
     });
-    it("should be redirected to the register page", () => {});
+    it("should be redirected to the register page", () => {
+      cy.url().should("contain", REGISTER_URL);
+    });
   });
 });
