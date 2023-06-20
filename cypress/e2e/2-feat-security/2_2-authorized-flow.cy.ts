@@ -51,7 +51,7 @@ describe.only("Given a secured endpoint returning 401", () => {
   const PAGE_URL = "/activities/mines";
   const API_URL = `${Cypress.env("apiUrl")}/activities/?userId=`;
   beforeEach(() => {
-    cy.intercept("GET", API_URL, { statusCode: 401 }).as("getMyActivities");
+    cy.force401();
   });
   context("when the user visits a page calling it", () => {
     beforeEach(() => {

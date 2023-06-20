@@ -18,13 +18,16 @@ Cypress.Commands.add("logout", () => {
   // window.localStorage.removeItem(TOKEN_KEY);
   cy.window().its("localStorage").invoke("removeItem", TOKEN_KEY);
 });
-
+Cypress.Commands.add("force401", () => {
+  cy.intercept("GET", `${Cypress.env("apiUrl")}/**`, { statusCode: 401 }).as("get401");
+});
 declare global {
   namespace Cypress {
     interface Chainable {
       registerUI(username: string, email: string, password: string): Chainable<void>;
       login(): Chainable<void>;
       logout(): Chainable<void>;
+      force401(): Chainable<void>;
     }
   }
 }
