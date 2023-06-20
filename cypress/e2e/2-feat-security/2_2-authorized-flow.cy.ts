@@ -49,7 +49,6 @@ describe("Given an already registered and logged user", () => {
 describe.only("Given a secured endpoint returning 401", () => {
   const REGISTER_URL = "/auth/sign-up";
   const PAGE_URL = "/activities/mines";
-  const API_URL = `${Cypress.env("apiUrl")}/activities/?userId=`;
   beforeEach(() => {
     cy.force401();
   });
