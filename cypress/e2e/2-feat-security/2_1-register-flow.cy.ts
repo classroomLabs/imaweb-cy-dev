@@ -1,3 +1,5 @@
+import { TOKEN_KEY } from "../../support/commands";
+
 /**
  * Given a user at registration flow
  *  when sends valid new credentials
@@ -19,10 +21,12 @@ describe("Given a user at registration flow", () => {
   });
   context("when sends valid new credentials", () => {
     beforeEach(() => {
+      // arrange
       cy.intercept("POST", API_URL, {
         statusCode: 201,
         fixture: "token",
       }).as("postRegister");
+      // e2e: vaciar o eliminar al usuario que voy crear...
       cy.visit(PAGE_URL);
       cy.get("#username").clear().type(NEW_USER.username);
       cy.get("[type='email']").clear().type(NEW_USER.email);
@@ -35,7 +39,7 @@ describe("Given a user at registration flow", () => {
     });
     it("should store the token in the local storage", () => {
       // arrange
-      const userToken = localStorage.getItem("user-access-token") || "";
+      const userToken = localStorage.getItem(TOKEN_KEY) || "";
       // act
       const actualToken = JSON.parse(userToken);
       // assert
@@ -57,11 +61,22 @@ describe("Given a user at registration flow", () => {
     });
   });
 
-  context("when sends invalid new credentials", () => {
+  context.only("when sends invalid new credentials", () => {
     beforeEach(() => {
+      // arrange
+      cy.intercept("POST", API_URL, {
+        statusCode: 400,
+        body: "Invalid credentials",
+      }).as("postRegister");
+      // e2e: crear el usuario antes y repetir proceso....
       cy.visit(PAGE_URL);
+      cy.registerUI(NEW_USER.username, NEW_USER.email, NEW_USER.password);
     });
-    it("should show the error dialog", () => {});
-    it("should display anonymous menu", () => {});
+    it("should show the error dialog", () => {
+      cy.get("#error-dialog").should("be.visible");
+    });
+    it("should display anonymous menu", () => {
+      cy.get("#anonymous-menu").should("be.visible");
+    });
   });
 });
