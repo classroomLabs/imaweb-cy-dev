@@ -11,6 +11,7 @@
  */
 describe("Given a user at registration flow", () => {
   const PAGE_URL = "/auth/sign-up";
+  const HOME_URL = `${Cypress.config("baseUrl")}/`;
   const API_URL = `${Cypress.env("apiUrl")}/register`;
   let NEW_USER: any = null;
   before(() => {
@@ -29,12 +30,31 @@ describe("Given a user at registration flow", () => {
       cy.get("[name='repeatPassword']").clear().type(NEW_USER.password);
       cy.get("form button[type=submit]").click();
     });
-    it.only("should send the form data to the server", () => {
+    it("should send the form data to the server", () => {
       cy.get("@postRegister").its("request.body").should("deep.equal", NEW_USER);
     });
-    it("should store the token in the local storage", () => {});
-    it("should redirect the user to the home page", () => {});
-    it("should display user menu", () => {});
+    it("should store the token in the local storage", () => {
+      // arrange
+      const userToken = localStorage.getItem("user-access-token") || "";
+      // act
+      const actualToken = JSON.parse(userToken);
+      // assert
+      const expectedToken = {
+        accessToken: "xxx.xxx.xxx",
+        user: {
+          id: 1,
+          name: NEW_USER.username,
+          email: NEW_USER.email,
+        },
+      };
+      expect(actualToken).to.deep.equal(expectedToken);
+    });
+    it("should redirect the user to the home page", () => {
+      cy.url().should("equal", HOME_URL);
+    });
+    it("should display user menu", () => {
+      cy.get("#user-menu").should("be.visible");
+    });
   });
 
   context("when sends invalid new credentials", () => {
