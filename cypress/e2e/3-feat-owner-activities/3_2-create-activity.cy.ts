@@ -26,5 +26,3 @@ describe("Given a registered user", () => {
     it("Then should navigate to the activities list page", () => {});
   });
 });
-
-// To Do: Use Page Object pattern
