@@ -10,11 +10,21 @@ Cypress.Commands.add("registerUI", (username, email, password) => {
   cy.get("[name='repeatPassword']").clear().type(password);
   cy.get("form button[type=submit]").click();
 });
+Cypress.Commands.add("login", () => {
+  cy.fixture("token").then((token) => localStorage.setItem(TOKEN_KEY, JSON.stringify(token)));
+});
+Cypress.Commands.add("logout", () => {
+  // object.property.method(argument);
+  // window.localStorage.removeItem(TOKEN_KEY);
+  cy.window().its("localStorage").invoke("removeItem", TOKEN_KEY);
+});
 
 declare global {
   namespace Cypress {
     interface Chainable {
       registerUI(username: string, email: string, password: string): Chainable<void>;
+      login(): Chainable<void>;
+      logout(): Chainable<void>;
     }
   }
 }
