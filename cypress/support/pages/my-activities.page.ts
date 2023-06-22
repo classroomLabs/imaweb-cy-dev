@@ -1,6 +1,7 @@
 export class MyActivitiesPage {
   private readonly pageUrl = "/activities/mines";
   private readonly itemQ = "details[name='activity-item']";
+
   visit(): void {
     cy.visit(this.pageUrl);
   }

@@ -1,7 +1,5 @@
-// import { getUserAccessToken } from "../../support/utils";
-
-import { MyActivitiesPage } from "../../support/pages/my-activities.page";
-import { getMyActivitiesUrl, getUserActivities } from "../../support/utils";
+import { MyActivitiesPage } from "@support/pages/my-activities.page";
+import { getMyActivitiesUrl, getUserActivities } from "@support/utils";
 
 describe("Given an activity owner", () => {
   const PAGE = new MyActivitiesPage();

@@ -14,7 +14,9 @@
     "outDir": "./dist/",
     "types": ["node"],
     "lib": ["es2021", "DOM"],
-    "paths": {}
+    "paths": {
+      "@support/*": ["./cypress/support/*"]
+    }
   },
   "include": ["./**/*.ts"],
   "exclude": ["node_modules", "**/*.test.ts", "**/*.spec.ts"]
