@@ -6,11 +6,11 @@
  *   When selecting an activity
  *    Then should toggle details article
  *   When changing an activity state
- *    Then should send a request to the API
+ *    Then should send a PUT request to the API
  */
 
 describe("Given an activity owner", () => {
-  const URL_MY_ACTIVITIES = "http://localhost:4200/activities/mines";
+  const URL_MY_ACTIVITIES = "/activities/mines";
   beforeEach(() => {});
   context("When visiting the activities mines page", () => {
     beforeEach(() => {
