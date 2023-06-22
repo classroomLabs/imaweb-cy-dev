@@ -11,6 +11,7 @@
 
 describe("Given an activity owner", () => {
   const URL_MY_ACTIVITIES = "/activities/mines";
+  const URL_API_MY_ACTIVITIES = "http://localhost:3000/activities/?userId=";
   beforeEach(() => {});
   context("When visiting the activities mines page", () => {
     beforeEach(() => {
